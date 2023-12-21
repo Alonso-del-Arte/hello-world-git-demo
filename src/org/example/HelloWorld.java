@@ -14,6 +14,7 @@ public class HelloWorld {
     
     public static String greeting(Locale locale) {
         return switch (locale.getISO3Language()) {
+            case "deu" -> "Hallo Welt!";
             case "eng" -> "Hello, world!";
             case "fra" -> "Bonjour le monde!";
             case "ita" -> "Ciao mondo!";

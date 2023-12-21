@@ -53,7 +53,7 @@ public class HelloWorldTest {
      */
     @Test
     public void testGreetingOtherLocaleLanguages() {
-        Map<String, String> expGreetings = Map.of("deu", "Hallo, Welt", 
+        Map<String, String> expGreetings = Map.of("deu", "Hallo Welt!", 
                 "fra", "Bonjour le monde!", "ita", "Ciao mondo!", 
                 "spa", "\u00A1Hola, mundo!");
         for (Map.Entry<String, String> entry : expGreetings.entrySet()) {

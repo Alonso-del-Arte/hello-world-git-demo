@@ -12,15 +12,15 @@ import java.util.Locale;
  */
 public class HelloWorld {
     
-    public static String greeting(Locale locale) {return "SORRY";
-//        return switch (locale.getISO3Language()) {
-//            case "deu" -> "Hallo Welt!";
-//            case "eng" -> "Hello, world!";
-//            case "fra" -> "Bonjour le monde!";
-//            case "ita" -> "Ciao mondo!";
-//            case "spa" -> "\u00A1Hola, mundo!";
-//            default -> "SORRY, NOT IMPLEMENTED YET";
-//        };
+    public static String greeting(Locale locale) {
+        return switch (locale.getISO3Language()) {
+            case "deu" -> "Hallo Welt!";
+            case "eng" -> "Hello, world!";
+            case "fra" -> "Bonjour le monde!";
+            case "ita" -> "Ciao mondo!";
+            case "spa" -> "\u00A1Hola, mundo!";
+            default -> "SORRY, NOT IMPLEMENTED YET";
+        };
     }
     
     public static void main(String[] args) {

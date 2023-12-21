@@ -75,12 +75,26 @@ public class HelloWorldTest {
 
     /**
      * Another test of the greeting function, of the HelloWorld class. For 
-     * French-speaking locales, the greeting should be "Bonjour le monde!"
+     * Italian-speaking locales, the greeting should be "Ciao mondo!"
      */
     @Test
     public void testGreetingItalian() {
         List<Locale> locales = getByISO3Language("ita");
         String expected = "Ciao mondo!";
+        for (Locale locale : locales) {
+            String actual = HelloWorld.greeting(locale);
+            assertEquals(expected, actual);
+        }
+    }
+
+    /**
+     * Another test of the greeting function, of the HelloWorld class. For 
+     * German-speaking locales, the greeting should be "Hallo Welt!""
+     */
+    @Test
+    public void testGreetingGerman() {
+        List<Locale> locales = getByISO3Language("deu");
+        String expected = "Hallo Welt!";
         for (Locale locale : locales) {
             String actual = HelloWorld.greeting(locale);
             assertEquals(expected, actual);

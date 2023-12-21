@@ -13,7 +13,11 @@ import java.util.Locale;
 public class HelloWorld {
     
     public static String greeting(Locale locale) {
-        return "Hello, world!";
+        if (locale.getISO3Language().equals("eng")) {
+            return "Hello, world!";
+        } else {
+            return "\u00A1Hola, mundo!";
+        }
     }
     
     public static void main(String[] args) {

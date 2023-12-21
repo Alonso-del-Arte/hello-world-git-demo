@@ -16,6 +16,7 @@ public class HelloWorld {
         return switch (locale.getISO3Language()) {
             case "eng" -> "Hello, world!";
             case "fra" -> "Bonjour le monde!";
+            case "ita" -> "Ciao mondo!";
             case "spa" -> "\u00A1Hola, mundo!";
             default -> "SORRY, NOT IMPLEMENTED YET";
         };

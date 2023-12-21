@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -47,57 +48,23 @@ public class HelloWorldTest {
 
     /**
      * Another test of the greeting function, of the HelloWorld class. For 
-     * Spanish-speaking locales, the greeting should be "&iexcl;Hola, mundo!"
+     * non-English-speaking locales, such as for Spanish and German, we might be 
+     * able to provide other greetings.
      */
     @Test
-    public void testGreetingSpanish() {
-        List<Locale> locales = getByISO3Language("spa");
-        String expected = "\u00A1Hola, mundo!";
-        for (Locale locale : locales) {
-            String actual = HelloWorld.greeting(locale);
-            assertEquals(expected, actual);
-        }
-    }
-
-    /**
-     * Another test of the greeting function, of the HelloWorld class. For 
-     * French-speaking locales, the greeting should be "Bonjour le monde!"
-     */
-    @Test
-    public void testGreetingFrench() {
-        List<Locale> locales = getByISO3Language("fra");
-        String expected = "Bonjour le monde!";
-        for (Locale locale : locales) {
-            String actual = HelloWorld.greeting(locale);
-            assertEquals(expected, actual);
-        }
-    }
-
-    /**
-     * Another test of the greeting function, of the HelloWorld class. For 
-     * Italian-speaking locales, the greeting should be "Ciao mondo!"
-     */
-    @Test
-    public void testGreetingItalian() {
-        List<Locale> locales = getByISO3Language("ita");
-        String expected = "Ciao mondo!";
-        for (Locale locale : locales) {
-            String actual = HelloWorld.greeting(locale);
-            assertEquals(expected, actual);
-        }
-    }
-
-    /**
-     * Another test of the greeting function, of the HelloWorld class. For 
-     * German-speaking locales, the greeting should be "Hallo Welt!""
-     */
-    @Test
-    public void testGreetingGerman() {
-        List<Locale> locales = getByISO3Language("deu");
-        String expected = "Hallo Welt!";
-        for (Locale locale : locales) {
-            String actual = HelloWorld.greeting(locale);
-            assertEquals(expected, actual);
+    public void testGreetingOtherLocaleLanguages() {
+        Map<String, String> expGreetings = Map.of("deu", "Hallo, Welt", 
+                "fra", "Bonjour le monde!", "ita", "Ciao mondo!", 
+                "spa", "\u00A1Hola, mundo!");
+        for (Map.Entry<String, String> entry : expGreetings.entrySet()) {
+            List<Locale> locales = getByISO3Language(entry.getKey());
+            String expected = entry.getValue();
+            for (Locale locale : locales) {
+                String actual = HelloWorld.greeting(locale);
+                String message = "Greeting for " + locale.getDisplayName() 
+                        + " expected to be \"" + expected + "\"";
+                assertEquals(message, expected, actual);
+            }
         }
     }
 

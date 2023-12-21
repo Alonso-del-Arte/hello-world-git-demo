@@ -60,6 +60,20 @@ public class HelloWorldTest {
     }
 
     /**
+     * Another test of the greeting function, of the HelloWorld class. For 
+     * Spanish-speaking locales, the greeting should be "&iexcl;Hola, mundo!"
+     */
+    @Test
+    public void testGreetingFrench() {
+        List<Locale> locales = getByISO3Language("fra");
+        String expected = "Bonjour le monde!";
+        for (Locale locale : locales) {
+            String actual = HelloWorld.greeting(locale);
+            assertEquals(expected, actual);
+        }
+    }
+
+    /**
      * Test of the main procedure, of the HelloWorld class.
      */
     @Test

@@ -13,7 +13,7 @@ import java.util.Locale;
 public class HelloWorld {
     
     public static String greeting(Locale locale) {
-        return "SORRY, NOT IMPLEMENTED YET";
+        return "Hello, world!";
     }
     
     public static void main(String[] args) {

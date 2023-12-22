@@ -53,9 +53,13 @@ public class HelloWorldTest {
      */
     @Test
     public void testGreetingOtherLocaleLanguages() {
+        String koreanGreeting = "\uC548\uB155\uD558\uC138\uC694, " 
+                + "\uC138\uACC4\uC785\uB2C8\uB2E4!";
         Map<String, String> expGreetings = Map.of("deu", "Hallo Welt!", 
                 "fra", "Bonjour le monde!", "ita", "Ciao mondo!", 
-                "spa", "\u00A1Hola, mundo!");
+                "jpn", "\u3053\u3093\u306B\u3061\u306F\u4E16\u754C\uFF01", 
+                "kor", koreanGreeting, "spa", "\u00A1Hola, mundo!", 
+                "zho", "\u4F60\u597D\u4E16\u754C\uFF01");
         for (Map.Entry<String, String> entry : expGreetings.entrySet()) {
             List<Locale> locales = getByISO3Language(entry.getKey());
             String expected = entry.getValue();

@@ -60,16 +60,15 @@ public class HelloWorldTest {
                 "jpn", "\u3053\u3093\u306B\u3061\u306F\u4E16\u754C\uFF01", 
                 "kor", koreanGreeting, "spa", "\u00A1Hola, mundo!", 
                 "zho", "\u4F60\u597D\u4E16\u754C\uFF01");
-        for (Map.Entry<String, String> entry : expGreetings.entrySet()) {
-            List<Locale> locales = getByISO3Language(entry.getKey());
-            String expected = entry.getValue();
+        expGreetings.forEach((iso3Tag, expected) -> {
+            List<Locale> locales = getByISO3Language(iso3Tag);
             for (Locale locale : locales) {
                 String actual = HelloWorld.greeting(locale);
                 String message = "Greeting for " + locale.getDisplayName() 
                         + " expected to be \"" + expected + "\"";
                 assertEquals(message, expected, actual);
             }
-        }
+        });
     }
 
     /**

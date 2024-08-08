@@ -19,7 +19,7 @@ package org.example;
 import java.util.Locale;
 
 /**
- *
+ * A simple program that displays a "Hello, world" greeting on the console.
  * @author Alonso del Arte
  */
 public class HelloWorld {
@@ -35,6 +35,7 @@ public class HelloWorld {
             case "ita" -> "Ciao mondo!";
             case "jpn" -> "\u3053\u3093\u306B\u3061\u306F\u4E16\u754C\uFF01";
             case "kor" -> KOREAN_GREETING;
+            case "por" -> "Ol\u00E1 mundo!";
             case "spa" -> "\u00A1Hola, mundo!";
             case "zho" -> "\u4F60\u597D\u4E16\u754C\uFF01";
             default -> "SORRY, NOT IMPLEMENTED YET";

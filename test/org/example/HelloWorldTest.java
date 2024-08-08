@@ -70,7 +70,8 @@ public class HelloWorldTest {
         Map<String, String> expGreetings = Map.of("deu", "Hallo Welt!", 
                 "fra", "Bonjour le monde!", "ita", "Ciao mondo!", 
                 "jpn", "\u3053\u3093\u306B\u3061\u306F\u4E16\u754C\uFF01", 
-                "kor", koreanGreeting, "spa", "\u00A1Hola, mundo!", 
+                "kor", koreanGreeting, "por", "Ol\u00E1 mundo!", 
+                "spa", "\u00A1Hola, mundo!", 
                 "zho", "\u4F60\u597D\u4E16\u754C\uFF01");
         expGreetings.forEach((iso3Tag, expected) -> {
             List<Locale> locales = getByISO3Language(iso3Tag);

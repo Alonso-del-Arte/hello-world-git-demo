@@ -17,13 +17,14 @@
 package org.example;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
+import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.Test;
@@ -90,10 +91,41 @@ public class HelloWorldTest {
     @Test
     public void testMain() {
         System.out.println("main");
-        String[] args = null;
-        HelloWorld.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Locale initialLocale = Locale.getDefault();
+        System.out.println("About to switch from initial locale " 
+                + initialLocale.getDisplayName());
+        Locale[] locales = Locale.getAvailableLocales();
+        int initialCapacity = locales.length;
+        Map<Locale, String> expecteds = new HashMap<>(initialCapacity);
+        Map<Locale, String> actuals = new HashMap<>(initialCapacity);
+        PrintStream usualOut = System.out;
+        usualOut.println("About to reroute usual output stream");
+        String[] args = {};
+        for (Locale locale : locales) {
+            Locale.setDefault(locale);
+            try (OutputStream interceptor = new ByteArrayOutputStream()) {
+                System.setOut(new PrintStream(interceptor));
+                HelloWorld.main(args);
+                expecteds.put(locale, HelloWorld.greeting(locale));
+                actuals.put(locale, interceptor.toString());
+                interceptor.close();
+            } catch (IOException ioe) {
+                throw new RuntimeException(ioe);
+            }
+        }
+        System.setOut(usualOut);
+        usualOut.println("Restored usual output stream");
+        Locale.setDefault(initialLocale);
+        usualOut.println("Restored initial locale " 
+                + initialLocale.getDisplayName());
+        for (Locale visitedLocale : expecteds.keySet()) {
+            String expected = expecteds.get(visitedLocale);
+            String actual = actuals.get(visitedLocale);
+            String msg = "Querying greeting for locale " 
+                    + visitedLocale.getDisplayName() + ", expected " + expected 
+                    + ", got " + actual;
+            assert actual.contains(expected) : msg;
+        }
     }
     
 }

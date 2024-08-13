@@ -30,6 +30,8 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import static org.testframe.api.Asserters.assertThrows;
+
 /**
  * Tests of the HelloWorld class.
  * @author Alonso del Arte
@@ -126,6 +128,19 @@ public class HelloWorldTest {
                     + ", got " + actual;
             assert actual.contains(expected) : msg;
         }
+    }
+
+    @Test
+    public void testConstructorRejectsNullLocale() {
+        String msg = "Null locale should've caused an exception";
+        Throwable t = assertThrows(() -> {
+            HelloWorld badInstance = new HelloWorld(null);
+            System.out.println(msg + ", not created " + badInstance.toString());
+        }, NullPointerException.class, msg);
+        String excMsg = t.getMessage();
+        assert excMsg != null : "Exception message should not be null";
+        assert !excMsg.isBlank() : "Exception message should not be blank";
+        System.out.println("\"" + excMsg + "\"");
     }
     
 }

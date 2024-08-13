@@ -41,6 +41,10 @@ public class HelloWorld {
             default -> "SORRY, NOT IMPLEMENTED YET";
         };
     }
+
+    public HelloWorld(Locale locale) {
+        //
+    }
     
     public static void main(String[] args) {
         System.out.println(greeting(Locale.getDefault()));

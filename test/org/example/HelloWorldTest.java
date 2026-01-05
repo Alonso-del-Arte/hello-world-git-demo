@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Alonso del Arte
+ * Copyright (C) 2026 Alonso del Arte
  *
  * This program is free software: you can redistribute it and/or modify it under 
  * the terms of the GNU General Public License as published by the Free Software 
@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import org.junit.Test;
@@ -44,6 +45,22 @@ public class HelloWorldTest {
                 -> loc.getISO3Language().equals(iso3Tag))
                 .collect(Collectors.toList());
     }
+    
+    @Test
+    public void testGreetingWord() {
+        System.out.println("greetingWord");
+        for (Locale locale : AVAILABLE_LOCALES) {
+            ResourceBundle bundle = ResourceBundle.getBundle("i18n.Messages", 
+                    locale);
+            String expected = bundle.getString("greetingWordSingular");
+            String actual = HelloWorld.greetingWord(1, locale);
+            String message = "Getting word for one greeting in locale " 
+                    + locale.getDisplayName();
+            assertEquals(message, expected, actual);
+        }
+    }
+    
+    // TODO: Rewrite all the following tests
     
     /**
      * Test of the greeting function, of the HelloWorld class.

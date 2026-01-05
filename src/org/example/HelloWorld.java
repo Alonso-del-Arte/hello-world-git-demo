@@ -37,18 +37,9 @@ public class HelloWorld {
     }
     
     public static String greeting(Locale locale) {
-        return switch (locale.getISO3Language()) {
-            case "deu" -> "Hallo Welt!";
-            case "eng" -> "Hello, world!";
-            case "fra" -> "Bonjour le monde!";
-            case "ita" -> "Ciao mondo!";
-            case "jpn" -> "\u3053\u3093\u306B\u3061\u306F\u4E16\u754C\uFF01";
-            case "kor" -> KOREAN_GREETING;
-            case "por" -> "Ol\u00E1 mundo!";
-            case "spa" -> "\u00A1Hola, mundo!";
-            case "zho" -> "\u4F60\u597D\u4E16\u754C\uFF01";
-            default -> "SORRY, NOT IMPLEMENTED YET";
-        };
+        ResourceBundle bundle = ResourceBundle.getBundle("i18n.Messages", 
+                locale);
+        return bundle.getString("greeting");
     }
     
     public static void main(String[] args) {

@@ -28,11 +28,12 @@ public class HelloWorld {
     private static final String KOREAN_GREETING 
             = "\uC548\uB155\uD558\uC138\uC694, \uC138\uACC4\uC785\uB2C8\uB2E4!";
     
-    // TODO: Write tests for this
     public static String greetingWord(int count, Locale locale) {
+        String key = (count == 1) ? "greetingWordSingular" 
+                : "greetingWordPlural";
         ResourceBundle bundle = ResourceBundle.getBundle("i18n.Messages", 
                 locale);
-        return bundle.getString("greetingWordSingular");
+        return bundle.getString(key);
     }
     
     public static String greeting(Locale locale) {

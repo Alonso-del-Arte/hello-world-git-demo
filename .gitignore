@@ -158,8 +158,11 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 
-# General
-src/draft/
+# Miscellaneous
+localdevicenotes.txt
+scratchpad.txt
+tempnotes.md
+src/draft
 src/secrets/
 test/draft/
 test/secrets/

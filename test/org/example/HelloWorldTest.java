@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -56,6 +57,21 @@ public class HelloWorldTest {
             String actual = HelloWorld.greetingWord(1, locale);
             String message = "Getting word for one greeting in locale " 
                     + locale.getDisplayName();
+            assertEquals(message, expected, actual);
+        }
+    }
+    
+    @Test
+    public void testGreetingWordPlural() {
+        Random random = new Random(-System.currentTimeMillis() >> 3);
+        for (Locale locale : AVAILABLE_LOCALES) {
+            int count = random.nextInt(2, 200);
+            ResourceBundle bundle = ResourceBundle.getBundle("i18n.Messages", 
+                    locale);
+            String expected = bundle.getString("greetingWordPlural");
+            String actual = HelloWorld.greetingWord(count, locale);
+            String message = "Getting word for " + count 
+                    + " greetings in locale " + locale.getDisplayName();
             assertEquals(message, expected, actual);
         }
     }

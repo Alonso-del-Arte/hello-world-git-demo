@@ -76,22 +76,25 @@ public class HelloWorldTest {
         }
     }
     
-    // TODO: Rewrite all the following tests
-    
     /**
      * Test of the greeting function, of the HelloWorld class.
      */
     @Test
     public void testGreeting() {
         System.out.println("greeting");
-        List<Locale> locales = getByISO3Language("eng");
-        String expected = "Hello, world!";
-        for (Locale locale : locales) {
+        for (Locale locale : AVAILABLE_LOCALES) {
+            ResourceBundle bundle = ResourceBundle.getBundle("i18n.Messages", 
+                    locale);
+            String expected = bundle.getString("greeting");
             String actual = HelloWorld.greeting(locale);
-            assertEquals(expected, actual);
+            String message = "Getting greeting in locale " 
+                    + locale.getDisplayName();
+            assertEquals(message, expected, actual);
         }
     }
 
+    // TODO: Rewrite all the following tests
+    
     /**
      * Another test of the greeting function, of the HelloWorld class. For 
      * non-English-speaking locales, such as for Spanish and German, we might be 

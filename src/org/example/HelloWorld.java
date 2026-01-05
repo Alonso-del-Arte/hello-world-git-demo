@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Alonso del Arte
+ * Copyright (C) 2026 Alonso del Arte
  *
  * This program is free software: you can redistribute it and/or modify it under 
  * the terms of the GNU General Public License as published by the Free Software 
@@ -17,6 +17,7 @@
 package org.example;
 
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * A simple program that displays a "Hello, world" greeting on the console.
@@ -26,6 +27,11 @@ public class HelloWorld {
     
     private static final String KOREAN_GREETING 
             = "\uC548\uB155\uD558\uC138\uC694, \uC138\uACC4\uC785\uB2C8\uB2E4!";
+    
+    // TODO: Write tests for this
+    public static String greetingWord(int count, Locale locale) {
+        return "SORRY, NOT IMPLEMENTED YET";
+    }
     
     public static String greeting(Locale locale) {
         return switch (locale.getISO3Language()) {

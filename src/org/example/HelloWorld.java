@@ -30,7 +30,9 @@ public class HelloWorld {
     
     // TODO: Write tests for this
     public static String greetingWord(int count, Locale locale) {
-        return "SORRY, NOT IMPLEMENTED YET";
+        ResourceBundle bundle = ResourceBundle.getBundle("i18n.Messages", 
+                locale);
+        return bundle.getString("greetingWordSingular");
     }
     
     public static String greeting(Locale locale) {
